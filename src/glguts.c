@@ -25,6 +25,7 @@ static bool toggle_fs;
 int32_t window_width;
 int32_t window_height;
 int32_t window_fullscreen;
+int32_t window_widescreen;
 bool window_integerscale;
 bool window_vsync;
 
@@ -182,7 +183,7 @@ void screen_read(struct frame_buffer *fb, bool alpha)
 
 void gl_screen_render()
 {
-    display_width = 640 * vk_rescaling;
+    display_width = (window_widescreen ? 854 : 640) * vk_rescaling;
     display_height = 480 * vk_rescaling;
 
     if(window_integerscale)

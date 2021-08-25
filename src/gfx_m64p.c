@@ -27,6 +27,7 @@
 #define KEY_SCREEN_WIDTH "ScreenWidth"
 #define KEY_SCREEN_HEIGHT "ScreenHeight"
 #define KEY_UPSCALING "Upscaling"
+#define KEY_WIDESCREEN "WidescreenStretch"
 #define KEY_SSDITHER "SuperscaledDither"
 #define KEY_SSREADBACKS "SuperscaledReads"
 #define KEY_OVERSCANCROP "CropOverscan"
@@ -128,6 +129,7 @@ EXPORT m64p_error CALL PluginStartup(m64p_dynlib_handle _CoreLibHandle, void *Co
     ConfigSetDefaultInt(configVideoParallel, KEY_UPSCALING, 1, "Amount of rescaling: 1=None, 2=2x, 4=4x, 8=8x");
     ConfigSetDefaultInt(configVideoParallel, KEY_SCREEN_WIDTH, 1024, "Screen width");
     ConfigSetDefaultInt(configVideoParallel, KEY_SCREEN_HEIGHT, 768, "Screen width");
+	ConfigSetDefaultBool(configVideoParallel, KEY_WIDESCREEN, 0, "Widescreen (stretch)");
     ConfigSetDefaultBool(configVideoParallel, KEY_SSREADBACKS, 0, "Enable superscaling of readbacks when upsampling");
     ConfigSetDefaultBool(configVideoParallel, KEY_SSDITHER, 0, "Enable superscaling of dithering when upsampling");
 
@@ -221,6 +223,7 @@ EXPORT int CALL RomOpen(void)
     window_fullscreen = ConfigGetParamBool(configVideoParallel, KEY_FULLSCREEN);
     window_width = ConfigGetParamInt(configVideoParallel, KEY_SCREEN_WIDTH);
     window_height = ConfigGetParamInt(configVideoParallel, KEY_SCREEN_HEIGHT);
+	window_widescreen = ConfigGetParamBool(configVideoParallel, KEY_WIDESCREEN);
     vk_rescaling = ConfigGetParamInt(configVideoParallel, KEY_UPSCALING);
     vk_ssreadbacks = ConfigGetParamBool(configVideoParallel, KEY_SSREADBACKS);
     window_integerscale = ConfigGetParamBool(configVideoParallel, KEY_INTEGER);
